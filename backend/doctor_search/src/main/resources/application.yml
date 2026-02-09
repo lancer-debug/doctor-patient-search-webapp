@@ -1,0 +1,17 @@
+spring.application.name: doctor_search
+
+spring: 
+  datasource:
+    url: jdbc:postgresql://localhost:5432/doctor_search_db
+    username: ${db_username}
+    password: ${db_password}
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+
+  flyway:
+    enabled: true
+    location: classpath:db/migration
+    baseline-on-migrate: true

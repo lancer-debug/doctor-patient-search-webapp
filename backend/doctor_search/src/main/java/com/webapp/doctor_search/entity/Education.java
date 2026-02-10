@@ -1,9 +1,8 @@
 package com.webapp.doctor_search.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,9 +11,11 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "educations")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Education {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -25,6 +26,7 @@ public class Education {
     // Many-to-One with Doctor
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = false, referencedColumnName = "id")
+    @JsonManagedReference
     private Doctor doctor;
 
     @Column(name = "school_name", nullable = false, length = 255)
